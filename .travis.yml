@@ -1,0 +1,32 @@
+os: linux
+language: php
+php:
+  - 7.3
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+    - $HOME/.composer/vendor
+    - vendor
+    - node_modules
+
+before_install:
+  - composer self-update
+  - nvm install 12
+
+script:
+  - composer install -o --prefer-dist --no-interaction
+  - composer run lint
+
+  - npm install
+  - npm run build
+
+# Yes, you can deploy your JS to npm if you'd like.
+deploy:
+  provider: npm
+  email: $NPM_EMAIL
+  api_key: $NPM_AUTH_TOKEN
+  on:
+    # tags: true
+    branch: master
+  skip_cleanup: true

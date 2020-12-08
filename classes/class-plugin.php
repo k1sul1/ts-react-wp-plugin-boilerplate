@@ -40,7 +40,7 @@ class Plugin {
 
   private function initializeActions() {
     add_action('rest_api_init', [$this, 'afterRestApiInit']);
-    add_action('wp', [$this, 'afterInit']);
+    add_action('init', [$this, 'afterInit']);
   }
 
   private function initializeFilters() {

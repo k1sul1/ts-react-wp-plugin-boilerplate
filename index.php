@@ -43,9 +43,9 @@ $plugin = myEmptyPlugin([
   'version' => $version,
 ]);
 
-add_action('plugins_loaded', function() use ($plugin) {
-  $plugin->initialize();
-});
+// add_action('plugins_loaded', function() use ($plugin) {
+$plugin->initialize();
+// });
 
 // These will not work inside init, they must be top level: https://developer.wordpress.org/reference/functions/register_activation_hook/
 register_activation_hook(__FILE__, [$plugin, 'onActivation']);
